@@ -115,7 +115,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     const user = params.get("user");
 
     if (user) {
-      fetch(`/Openlight/platform/users/${user}.json`)
+      fetch(`https://therealduckers.github.io/Openlight/platform/users/${user}.json`)
         .then(res => {
           if (!res.ok) throw new Error("User not found");
           return res.json();
