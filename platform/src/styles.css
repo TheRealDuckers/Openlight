@@ -1,59 +1,105 @@
-/* Base Reset */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body and Containers */
+/* Body */
 body {
   background-color: #121212;
   color: #e0e0e0;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
 }
 
+/* Container */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* Header */
-.site-header {
+/* Sticky Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background-color: #1e1e1e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
   border-bottom: 1px solid #333;
-  text-align: center;
-  padding: 40px 20px;
 }
 
-.site-header h1 {
-  font-size: 2.5rem;
+.logo {
+  font-size: 1.5rem;
   color: #90caf9;
+  font-weight: bold;
 }
 
-.site-header p {
-  font-size: 1.1rem;
-  color: #b0b0b0;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-/* Intro Section */
+.nav-links li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: url('https://source.unsplash.com/1600x900/?stage,spotlight') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.7);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+/* Steps Section */
 .intro {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.intro h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.intro p {
-  font-size: 1rem;
-  color: #aaa;
-}
-
-/* Step Cards */
 .steps {
   display: flex;
   gap: 30px;
@@ -118,6 +164,25 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #1e1e1e;
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding: 20px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
   .steps {
     flex-direction: column;
   }
@@ -126,11 +191,7 @@ body {
     flex: 1 1 100%;
   }
 
-  .site-header h1 {
+  .hero-content h1 {
     font-size: 2rem;
-  }
-
-  .intro h2 {
-    font-size: 1.5rem;
   }
 }
