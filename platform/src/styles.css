@@ -1,38 +1,121 @@
 :root {
-  --primary: #1e88e5;
-  --accent: #f5f5f5;
-  --text: #333;
-  --radius: 8px;
+  --bg: #0a0a0a;
+  --card: #1a1a1a;
+  --text: #ffffff;
+  --muted: #999;
+  --accent: #00ffe0;
+  --accent-hover: #00d6b8;
+  --radius: 10px;
+  --font: 'Inter', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--accent);
+  font-family: var(--font);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  background-image: url('https://images.unsplash.com/photo-1607083206173-3e4c3f3b6b8e?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-header.hero {
-  background: linear-gradient(to right, #1e88e5, #42a5f5);
-  color: white;
+/* Navigation */
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: rgba(10, 10, 10, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  color: var(--accent);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: var(--card);
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Hero */
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 3rem 1rem;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: var(--radius);
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin: 0;
+  color: var(--accent);
 }
 
 .tagline {
   font-size: 1.2rem;
-  margin: 0.5rem 0 1.5rem;
+  color: var(--muted);
+  margin: 1rem 0;
 }
 
 .hero-btn {
-  background-color: white;
-  color: var(--primary);
+  background-color: var(--accent);
+  color: var(--bg);
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius);
   text-decoration: none;
@@ -41,20 +124,29 @@ header.hero {
 }
 
 .hero-btn:hover {
-  background-color: #e3f2fd;
+  background-color: var(--accent-hover);
 }
 
+/* Sections */
 main {
   padding: 1.5rem;
 }
 
-.section {
+.section,
+.card-section,
+.cta {
+  background-color: rgba(26, 26, 26, 0.9);
+  padding: 2rem 1rem;
+  border-radius: var(--radius);
   margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-.section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+.section h2,
+.card-section h2,
+.cta h2 {
+  color: var(--accent);
+  margin-bottom: 1rem;
 }
 
 .section ul {
@@ -63,64 +155,28 @@ main {
 }
 
 .section ul li {
-  background: white;
   margin: 0.5rem 0;
-  padding: 0.75rem;
-  border-radius: var(--radius);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding-left: 1rem;
+  position: relative;
+  color: var(--muted);
 }
 
-.cta {
-  text-align: center;
-  background-color: white;
-  padding: 2rem 1rem;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.section ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
 }
 
-.cta-buttons button {
-  margin: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: var(--radius);
-  background-color: var(--primary);
-  color: white;
-  cursor: pointer;
-  transition: background
-
-  .card-section {
-  margin-bottom: 3rem;
-}
-
+/* Cards */
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 .card {
-  background-color: rgba(26, 26, 26, 0.85);
+  background-color: rgba(40, 40, 40, 0.95);
   border-radius: var(--radius);
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.card h3 {
-  margin-top: 0;
-  color: var(--accent);
-}
-
-.card p {
-  color: var(--muted);
-}
-
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+  box-shadow
