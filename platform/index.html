@@ -7,10 +7,20 @@
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1>OpenLight</h1>
-      <p>Illuminate Talent, Openly</p>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">OpenLight</div>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Casting Calls</a></li>
+        <li><a href="#">Create Profile</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Illuminate Talent, Openly</h1>
+      <p>Discover. Cast. Collaborate.</p>
     </div>
   </header>
 
@@ -44,5 +54,13 @@
       <p>© 2025 OpenLight. Built with openness.</p>
     </div>
   </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
